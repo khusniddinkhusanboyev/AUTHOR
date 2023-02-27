@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h4 align="center">Publishers</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form align="center" th:action="@{/addPublisher}" th:object="${newPublisher}" method="post">
+                <p>
+                    <label>name</label><br>
+                    <input type="text" th:field="*{name}" >
+                </p>
+                <p>
+                    <label>Address </label><br>
+                    <input type="text" th:field="*{addressLine1}" >
+                </p>
+                <p>
+                    <label>city</label><br>
+                    <input type="text" th:field="*{city}" >
+                </p>
+                <p>
+                    <label>state</label><br>
+                    <input type="text" th:field="*{state}" >
+                </p>
+                <p>
+                    <label>zip</label><br>
+                    <input type="text" th:field="*{zip}" >
+                </p>
+                <p>
+                    <button>Sign up</button>
+                    <button type="reset">Reset form</button>
+                </p>
+            </form></div>
+            <div class="col-6">
+<table align="center" border="1" class="table">
+    <thead >
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>addressline1</th>
+        <th>city</th>
+        <th>state</th>
+        <th>zip</th>
+        <th>modify</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="publisher : ${publishers}" >
+        <td th:text="${publisher.id}"></td>
+        <td th:text="${publisher.name}"></td>
+        <td th:text="${publisher.addressLine1}"></td>
+        <td th:text="${publisher.city}"></td>
+        <td th:text="${publisher.state}"></td>
+        <td th:text="${publisher.zip}"></td>
+        <td ><a th:href="@{/deletePublisher/{id}(id=${publisher.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+    <a align="center"  th:href="@{/author}" >author</a>
+    <a  align="center" th:href="@{/book}">book</a>
+    <a  align="center"  th:href="@{/publisher}">publisher</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
